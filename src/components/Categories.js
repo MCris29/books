@@ -8,7 +8,6 @@ import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import useSWR from "swr";
 import {fetcher} from "@/lib/utils";
-import Loading from "@/components/Loading";
 import Routes from "@/constants/routes";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -41,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 const responsive = {
     superLargeDesktop: {
-        // the naming can be any, depends on you.
         breakpoint: {max: 4000, min: 3000},
         items: 5
     },
@@ -74,7 +72,6 @@ const Categories = () => {
     return (
         <>
             <CssBaseline/>
-
             <Container
                 className={classes.cardGrid}
                 maxWidth="md"
@@ -107,9 +104,7 @@ const Categories = () => {
                                                 </CardContent>
                                             </CardActionArea>
                                         </Card>
-
                                     </Link>
-
                                 </div>
                             ))}
                     </Carousel>
