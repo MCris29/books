@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "@/components/Slider";
 import CardInf from "@/components/CardInf";
 import Categories from "@/components/Categories";
-import CardView from "@/components/Cardview";
+import CarouselCards from "@/components/CarouselCards";
 
 export default function Home() {
     return (
@@ -10,7 +10,7 @@ export default function Home() {
             <Slider/>
             <CardInf/>
             <Categories/>
-            {/*<CardView/>*/}
+            <CarouselCards/>
         </div>
     );
 }
