@@ -35,6 +35,33 @@ const useStyles = makeStyles((theme) => ({
     },
     media: {
         height: 140,
+        display: "flex",
+    },
+    link: {
+        color: "rgba(0,0,0,0)",
+    },
+    cardTitle: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        paddingLeft: "0px",
+        paddingRight: "0px",
+    },
+    textTitle: {
+        width: "100%",
+        textAlign: "center",
+        backdropFilter: "brightness(0.5)",
+        color: "#fff",
+    },
+    skeleton: {
+        width: "320px",
+        height: "118px",
+        margin: "30px",
+    },
+    skeletonContainer: {
+        display: "flex",
+        justifyContent: "center",
     },
 }));
 
@@ -45,11 +72,11 @@ const responsive = {
     },
     desktop: {
         breakpoint: {max: 3000, min: 1024},
-        items: 3
+        items: 5
     },
     tablet: {
         breakpoint: {max: 1024, min: 464},
-        items: 2
+        items: 3
     },
     mobile: {
         breakpoint: {max: 464, min: 0},
@@ -64,8 +91,12 @@ const Categories = () => {
     if (error) return <div>No se pudo cargar el contenido</div>;
     if (!data)
         return (
-            <div>
-                <Skeleton variant="rect" width={210} height={118}/>
+            <div className={classes.skeletonContainer}>
+                <Skeleton variant="rect" className={classes.skeleton}/>
+                <Skeleton variant="rect" className={classes.skeleton}/>
+                <Skeleton variant="rect" className={classes.skeleton}/>
+                <Skeleton variant="rect" className={classes.skeleton}/>
+                <Skeleton variant="rect" className={classes.skeleton}/>
             </div>
         );
 
@@ -90,18 +121,22 @@ const Categories = () => {
                         {
                             data.data.map((data) => (
                                 <div key={data.id} className={classes.cardContainer}>
-                                    <Link href={`${Routes.CATEGORY}/${data.id}`}>
+                                    <Link href={`${Routes.CATEGORY}/${data.id}`} className={classes.link}>
                                         <Card className={classes.root}>
                                             <CardActionArea>
                                                 <CardMedia
                                                     className={classes.media}
                                                     image={`https://picsum.photos/200/300?sig=${data.id}`}
-                                                />
-                                                <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="h3">
-                                                        {data.name}
-                                                    </Typography>
-                                                </CardContent>
+
+                                                >
+                                                    <CardContent className={classes.cardTitle}>
+                                                        <Typography gutterBottom variant="h5" component="h3"
+                                                                    className={classes.textTitle}
+                                                        >
+                                                            {data.name}
+                                                        </Typography>
+                                                    </CardContent>
+                                                </CardMedia>
                                             </CardActionArea>
                                         </Card>
                                     </Link>
