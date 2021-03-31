@@ -1,115 +1,135 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import { Box } from "@material-ui/core";
-import Routes from "../constants/routes";
-import { Link as MuiLink } from "@material-ui/core";
+import {Box} from "@material-ui/core";
+import Routes from "@/constants/routes";
 import Image from "next/image";
-import RedSocial from "@/components/RedSocial";
-import Menufooter from "@/components/Menufooter";
-import Divider from "@material-ui/core/Divider";
+import Divider from '@material-ui/core/Divider';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" align="center">
-      {"Copyright © "} Book-Hi | 2020 Creado por JCCL
-      <Link href="https://material-ui.com/"></Link> {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 const useStyles = makeStyles((theme) => ({
-  footer: {
-    padding: theme.spacing(6, 0),
-    backgroundColor: "#003D59",
-    color: "#fff",
-  },
-  root: {
-    flexGrow: 1,
-    display: "flex",
-    alignContent: "center",
-    padding: "20px",
-  },
-  paper: {
-    padding: theme.spacing(2),
-    alignItems: "center",
-    alignContent: "right",
-    color: theme.palette.text.secondary,
-    background: "#fff",
-  },
+    footer: {
+        padding: theme.spacing(6, 0),
+        backgroundColor: "#003D59",
+        color: "#fff",
+        textAlign: "center",
+    },
+    root: {
+        flexGrow: 1,
+        display: "flex",
+        alignContent: "center",
+        padding: "20px",
+    },
+    logo: {
+        display: "none",
+        padding: 8,
+        maxHeight: 150,
+        [theme.breakpoints.up("xs")]: {
+            display: "block",
+        },
+        "& a img": {
+            maxHeight: 45,
+        },
+    },
+    links: {
+        padding: "0 20px",
+        color: "#fff",
+    },
 }));
 
-export default function Footer(props) {
-  const classes = useStyles();
-  const { description, title } = props;
-
-  return (
-    <footer className={classes.footer}>
-      <Container maxWidth="lg">
-        <div className={classes.root}>
-          <Grid
-            container
-            direction="col"
-            justify="space-around"
-            alignItems="center"
-            spacing={2}
-          >
-            <Grid item>
-              <Box className={classes.logo}>
-                <Link href={Routes.HOME} passHref>
-                  <MuiLink>
-                    <Image src="/logo-book_w.png" width={200} height={60} />
-                  </MuiLink>
-                </Link>
-              </Box>
-            </Grid>
-          </Grid>
-
-          <Grid
-            container
-            direction="col"
-            justify="space-around"
-            alignItems="center"
-            spacing={2}
-          >
-            <Grid item>
-              <Box className={classes.logo}>
-                <Menufooter />
-              </Box>
-            </Grid>
-          </Grid>
-
-          <Grid
-            container
-            direction="col"
-            justify="space-around"
-            alignItems="center"
-            spacing={2}
-          >
-            <Grid item>
-              <Box className={classes.logo}>
-                <RedSocial />
-              </Box>
-            </Grid>
-          </Grid>
-        </div>
-        <Divider style={{ background: "#fff" }} />
-      </Container>
-      <div className={classes.root}>
-        <Container maxWidth="lg">
-          <Copyright />
-        </Container>
-      </div>
-    </footer>
-  );
+function Copyright() {
+    return (
+        <Typography variant="body2" align="center">
+            {"Copyright © Book-Hi | Created by JCCL "}
+            <Link href={Routes.HOME}/>
+            {new Date().getFullYear()}
+            {"."}
+        </Typography>
+    );
 }
 
-Footer.propTypes = {
-  description: PropTypes.string,
-  title: PropTypes.string,
-};
+
+const mainMenuItems = [
+    {
+        text: "Inicio",
+        to: Routes.HOME,
+    },
+    {
+        text: "Libros",
+        to: Routes.BOOKS,
+    },
+    {
+        text: "Nosotros",
+        to: Routes.ABOUT,
+    },
+];
+
+const socialNets = [
+    {
+        icon: <FacebookIcon/>,
+        to: "https://facebook.com",
+    },
+    {
+        icon: <InstagramIcon/>,
+        to: "https://instagram.com",
+    },
+    {
+        icon: <TwitterIcon/>,
+        to: "https://twitter.com",
+    },
+];
+
+
+export default function Footer() {
+    const classes = useStyles();
+
+    return (
+        <div className={classes.footer}>
+            <Grid container>
+                <Grid item xs={12} lg={4}>
+                    <Box className={classes.logo}>
+                        <Image
+                            src="/logo-book_w.png"
+                            alt="Book-Hi"
+                            width={180}
+                            height={66}
+                            color="#fff"
+                        />
+                    </Box>
+                </Grid>
+                <Grid item xs={12} lg={4}>
+                    {
+                        mainMenuItems.map((item, index) => (
+                            <Link
+                                href={item.to} key={item.text}
+                                className={classes.links}
+                            >
+                                {item.text}
+                            </Link>
+                        ))}
+                </Grid>
+                <Grid item xs={12} lg={4}>
+                    {
+                        socialNets.map((item, index) => (
+                            <Link
+                                href={item.to} key={item.text}
+                                className={classes.links}
+                            >
+                                {item.icon}
+                            </Link>
+                        ))
+                    }
+                </Grid>
+                <Divider light/>
+                <Grid item xs={12}>
+                    <Copyright/>
+                </Grid>
+            </Grid>
+        </div>
+    );
+}
