@@ -40,6 +40,21 @@ const useStyles = makeStyles((theme) => ({
         padding: "0 20px",
         color: "#fff",
     },
+    title: {
+        paddingBottom: "20px",
+        fontSize: "large",
+        fontWeight: "bold",
+    },
+    footerItems: {
+        padding: "20px 0",
+    },
+    copyRight: {
+        paddingTop: "40px",
+    },
+    divider: {
+        width: "100%",
+        backgroundColor: "#fff",
+    },
 }));
 
 function Copyright() {
@@ -91,7 +106,9 @@ export default function Footer() {
     return (
         <div className={classes.footer}>
             <Grid container>
-                <Grid item xs={12} lg={4}>
+                <Grid item xs={12} lg={4}
+                      className={classes.footerItems}
+                >
                     <Box className={classes.logo}>
                         <Image
                             src="/logo-book_w.png"
@@ -102,7 +119,10 @@ export default function Footer() {
                         />
                     </Box>
                 </Grid>
-                <Grid item xs={12} lg={4}>
+                <Grid item xs={12} lg={4}
+                      className={classes.footerItems}
+                >
+                    <Typography className={classes.title}>Enlaces: </Typography>
                     {
                         mainMenuItems.map((item, index) => (
                             <Link
@@ -113,7 +133,10 @@ export default function Footer() {
                             </Link>
                         ))}
                 </Grid>
-                <Grid item xs={12} lg={4}>
+                <Grid item xs={12} lg={4}
+                      className={classes.footerItems}
+                >
+                    <Typography className={classes.title}>Siguenos: </Typography>
                     {
                         socialNets.map((item, index) => (
                             <Link
@@ -125,8 +148,12 @@ export default function Footer() {
                         ))
                     }
                 </Grid>
-                <Divider light/>
-                <Grid item xs={12}>
+
+                <Divider light={"#fff"} className={classes.divider}/>
+
+                <Grid item xs={12}
+                      className={classes.copyRight}
+                >
                     <Copyright/>
                 </Grid>
             </Grid>
