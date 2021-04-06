@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "15px",
         padding: "0px 5px",
         margin: "2px",
+        "&:hover": {
+            color: theme.palette.primary.main,
+        },
     },
 }));
 
@@ -62,7 +65,7 @@ const IconsMenu = () => {
     const handleProfile = async () => {
         handleMenuAccountClose();
     };
-    
+
     const handleLogout = async () => {
         logout();
         handleMenuAccountClose();
