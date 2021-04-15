@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     root: {
         maxWidth: 345,
         margin: "0 30px",
+        borderRadius: "10px",
     },
     media: {
         height: 140,
@@ -56,9 +57,15 @@ const BookCard = ({data}) => {
                             <Typography variant="body2" color="textSecondary" component="p">
                                 {data.category}
                             </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                $ {data.price}
-                            </Typography>
+                            {
+                                data.price === 0
+                                    ? <Typography variant="body2" color="textPrimary" component="p">
+                                        Gratis
+                                    </Typography>
+                                    : <Typography variant="body2" color="textPrimary" component="p">
+                                        $ {data.price}
+                                    </Typography>
+                            }
                         </CardContent>
                     </CardActionArea>
                 </Link>
