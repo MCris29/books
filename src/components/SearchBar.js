@@ -20,17 +20,17 @@ const useStyles = makeStyles((theme) => ({
         "&:hover": {
             backgroundColor: fade(theme.palette.secondary.main, 0.8),
         },
-        borderRadius: "0px 25px 25px 0px",
+        borderRadius: "0px 7px 7px 0px",
     },
     inputRoot: {
         color: "#000",
-        borderRadius: "25px 0px 0px 25px",
+        borderRadius: "7px 0px 0px 7px",
         backgroundColor: fade(theme.palette.common.white, 1),
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        paddingLeft: "calc(1em + 7px)",
         transition: theme.transitions.create("width"),
         width: "100%",
         [theme.breakpoints.up("md")]: {
