@@ -4,8 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import useSWR from "swr";
 import {fetcher} from "@/lib/utils";
-import Loading from "@/components/Loading";
 import BookCard from "@/components/BookCard";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -20,6 +20,32 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.quinary.main,
         padding: "20px",
     },
+    skeleton: {
+        borderRadius: "10px",
+        [theme.breakpoints.up("xs")]: {
+            width: "100px",
+            height: "100px",
+            margin: "10px 30px",
+        },
+        [theme.breakpoints.up("md")]: {
+            width: "345px",
+            height: "240px",
+            margin: "30px",
+        },
+    },
+    skeletonContainer: {
+        display: "flex",
+        justifyContent: "center",
+        margin: "0 30px",
+    },
+    skeletonText: {
+        [theme.breakpoints.up("xs")]: {
+            margin: "0px 50px",
+        },
+        [theme.breakpoints.up("md")]: {
+            margin: "0 350px",
+        },
+    },
 }));
 
 const book = () => {
@@ -31,7 +57,19 @@ const book = () => {
     if (!data)
         return (
             <div>
-                <Loading/>
+                <Skeleton variant="rect" className={classes.skeletonText}/>
+                <div className={classes.skeletonContainer}>
+                    <Skeleton variant="rect" className={classes.skeleton}/>
+                    <Skeleton variant="rect" className={classes.skeleton}/>
+                    <Skeleton variant="rect" className={classes.skeleton}/>
+                    <Skeleton variant="rect" className={classes.skeleton}/>
+                </div>
+                <div className={classes.skeletonContainer}>
+                    <Skeleton variant="rect" className={classes.skeleton}/>
+                    <Skeleton variant="rect" className={classes.skeleton}/>
+                    <Skeleton variant="rect" className={classes.skeleton}/>
+                    <Skeleton variant="rect" className={classes.skeleton}/>
+                </div>
             </div>
         );
     return (
