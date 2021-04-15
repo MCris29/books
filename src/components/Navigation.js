@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     logo: {
+        cursor: "pointer",
         display: "none",
         padding: 8,
         maxHeight: 150,
@@ -114,6 +115,11 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         paddingRight: "30px",
     },
+    text: {
+        "&:hover": {
+            color: theme.palette.primary.main,
+        },
+    },
 }));
 
 function HideOnScroll(props) {
@@ -161,14 +167,22 @@ export default function MainMenu(props) {
             </div>
             <Divider/>
             <List>
-                {mainMenuItems.map((item, index) => (
-                    <Link href={item.to} key={item.text}>
-                        <ListItem button onClick={() => setOpenDrawer(false)}>
-                            <Icon className={classes.icon}>{item.icon}</Icon>
-                            <ListItemText>{item.text}</ListItemText>
-                        </ListItem>
-                    </Link>
-                ))}
+                {
+                    mainMenuItems.map((item, index) => (
+                        <Link href={item.to}
+                              key={item.text}
+                        >
+                            <ListItem button
+                                      onClick={() => setOpenDrawer(false)}
+                                      className={classes.text}
+                            >
+                                <Icon className={classes.icon}>
+                                    {item.icon}
+                                </Icon>
+                                <ListItemText>{item.text}</ListItemText>
+                            </ListItem>
+                        </Link>
+                    ))}
             </List>
         </Drawer>
     );
@@ -203,15 +217,17 @@ export default function MainMenu(props) {
                                 xs={8}
                                 style={{display: "flex", justifyContent: "center"}}
                             >
-                                <Box className={classes.logo}>
-                                    <Image
-                                        src="/logo-book_w.png"
-                                        alt="Book-Hi"
-                                        width={180}
-                                        height={66}
-                                        color="#fff"
-                                    />
-                                </Box>
+                                <Link href={Routes.HOME}>
+                                    <Box className={classes.logo}>
+                                        <Image
+                                            src="/logo-book_w.png"
+                                            alt="Book-Hi"
+                                            width={180}
+                                            height={66}
+                                            color="#fff"
+                                        />
+                                    </Box>
+                                </Link>
                             </Grid>
                             <Grid item xs={2} className={classes.drawerHeader}>
                                 <IconMenu/>
@@ -220,14 +236,17 @@ export default function MainMenu(props) {
                             <Grid item xs={12} className={classes.drawerHeader}>
                                 <div className={classes.grow}/>
                                 <div className={classes.sectionDesktop}>
-                                    {mainMenuItems.map((item) => (
-                                        <Link href={item.to} key={item.text}>
-                                            <MenuItem>
-                                                <Icon className={classes.icon}>{item.icon}</Icon>
-                                                {item.text}
-                                            </MenuItem>
-                                        </Link>
-                                    ))}
+                                    {
+                                        mainMenuItems.map((item) => (
+                                            <Link href={item.to} key={item.text}>
+                                                <MenuItem className={classes.text}>
+                                                    <Icon className={classes.icon}>
+                                                        {item.icon}
+                                                    </Icon>
+                                                    {item.text}
+                                                </MenuItem>
+                                            </Link>
+                                        ))}
                                 </div>
                                 <div className={classes.grow}/>
                             </Grid>
