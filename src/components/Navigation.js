@@ -104,8 +104,10 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         width: drawerWidth,
+        backgroundColor: theme.palette.quinary.main,
     },
     drawerHeader: {
+        color: "#fff",
         display: "flex",
         alignItems: "center",
         padding: theme.spacing(0, 1),
@@ -116,6 +118,7 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: "30px",
     },
     text: {
+        color: "#fff",
         "&:hover": {
             color: theme.palette.primary.main,
         },
@@ -162,11 +165,12 @@ export default function MainMenu(props) {
         >
             <div className={classes.drawerHeader}>
                 <IconButton onClick={handleDrawerClose}>
-                    <ChevronLeftIcon/>
+                    <ChevronLeftIcon className={classes.text}/>
                 </IconButton>
             </div>
-            <Divider/>
+            <Divider light/>
             <List>
+                <SearchBar/>
                 {
                     mainMenuItems.map((item, index) => (
                         <Link href={item.to}
