@@ -91,7 +91,7 @@ const book = () => {
                         variant="h4"
                         className={classes.title}
                     >
-                        Catalogo
+                        Todos los libros
                     </Typography>
                 </Grid>
                 <Grid item xs={12} style={{display: "contents"}}>
